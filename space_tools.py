@@ -70,12 +70,12 @@ def lat_user_choice(spaceport_dictionary):
 spaceport, lat = lat_user_choice(spaceport_lats)
 type_of_calc = inc_or_az()
 
-if type_of_calc == "i":
+if type_of_calc == "a":
     inclination = float(input("What inclination are you trying to hit? "))
     daz = az_from_inc(lat, inclination)
     print(f"At latitude {lat} ({spaceport}), to achieve an inclination of {inclination}, the azimuth required is: {daz}")
 
-elif type_of_calc == "a":
+elif type_of_calc == "i":
     azimuth = float(input("What azimuth are you flying? "))
     dinc = inc_from_az(lat, azimuth)
     print(f"At latitude {lat} ({spaceport}), an azimuth of {azimuth}, results in the inclination of: {dinc}")
