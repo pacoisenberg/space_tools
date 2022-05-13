@@ -67,9 +67,9 @@ def lat_user_choice():
         for key in spaceport_lats:
             print(key)
 
-        spaceport = input("Type the name of a spaceport from the list or enter a latitude to launch from: ")
+        spaceport = input("Type the name of a spaceport from the list or enter a latitude to launch from: ").upper()
 
-        if spaceport == "quit":
+        if spaceport == "QUIT":
             break
         try:
             lat = spaceport_lats[spaceport]
