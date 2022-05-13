@@ -1,7 +1,7 @@
 import math
 
-spaceport_lats = {
-    'PSCA': 57.4304338,
+spaceport_list = {
+    'PSCA': {"lat":57.4304338, "min_inc": 59, "max_inc": 98},
     'SLC46': 28.4581376,
     'Camden': 30.9366602,
     'SLC8': 34.5763024,
@@ -41,7 +41,26 @@ def inc_or_az():
         calc_choice = calc_choice[0]
     return (calc_choice)
 
-def lat_user_choice(spaceport_dictionary):
+def spaceport_select():
+
+    spaceport = ""
+
+    while spaceport not in spaceport_list:
+        for key in spaceport_list:
+            print(key)
+
+        spaceport = input("Type the name of a spaceport from the list or enter a latitude to launch from: ")
+
+        if spaceport == "quit":
+            break
+        try:
+            spaceport_dict = spaceport_list[spaceport]
+            print(f"The latitude of {spaceport} is {spaceport_dict['lat']} degrees")
+        except KeyError:
+            print(f"{spaceport} is not a valid entry")
+    return (spaceport_dict)
+
+def lat_user_choice():
 
     spaceport = ""
     while spaceport not in spaceport_lats:
@@ -67,15 +86,19 @@ def lat_user_choice(spaceport_dictionary):
 
     return(spaceport, lat)
 
-spaceport, lat = lat_user_choice(spaceport_lats)
-type_of_calc = inc_or_az()
+spaceport_dict = spaceport_select()
 
-if type_of_calc == "i":
-    inclination = float(input("What inclination are you trying to hit? "))
-    daz = az_from_inc(lat, inclination)
-    print(f"At latitude {lat} ({spaceport}), to achieve an inclination of {inclination}, the azimuth required is: {daz}")
+print(spaceport_dict)
 
-elif type_of_calc == "a":
-    azimuth = float(input("What azimuth are you flying? "))
-    dinc = inc_from_az(lat, azimuth)
-    print(f"At latitude {lat} ({spaceport}), an azimuth of {azimuth}, results in the inclination of: {dinc}")
+# spaceport, lat = lat_user_choice(spaceport_lats)
+# type_of_calc = inc_or_az()
+#
+# if type_of_calc == "i":
+#     inclination = float(input("What inclination are you trying to hit? "))
+#     daz = az_from_inc(lat, inclination)
+#     print(f"At latitude {lat} ({spaceport}), to achieve an inclination of {inclination}, the azimuth required is: {daz}")
+#
+# elif type_of_calc == "a":
+#     azimuth = float(input("What azimuth are you flying? "))
+#     dinc = inc_from_az(lat, azimuth)
+#     print(f"At latitude {lat} ({spaceport}), an azimuth of {azimuth}, results in the inclination of: {dinc}")
